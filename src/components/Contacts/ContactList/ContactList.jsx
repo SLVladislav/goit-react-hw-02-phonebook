@@ -1,31 +1,29 @@
 import PropTypes from 'prop-types';
 import Contact from '../Contact/Contact';
+import { Item } from './ContactList.styled';
+// import { FaTrash } from 'react-icons/fa';
 
-export default function ContactList({
-  contacts,
-  visiblContacts,
-  deleteContact,
-}) {
+const ContactList = ({ contacts, visiblContacts, deleteContact }) => {
   return contacts ? (
     <ul>
       {visiblContacts.map(({ id, name, number }) => {
         return (
-          <li key={id}>
-            <Contact name={name} number={number} />
-            <button
-              type="button"
-              onClick={() => {
-                deleteContact(id);
-              }}
-            ></button>
-          </li>
+          <Item key={id}>
+            <Contact
+              name={name}
+              number={number}
+              deleteContact={deleteContact}
+              id={id}
+            />
+
+          </Item>
         );
       })}
     </ul>
   ) : (
     <></>
   );
-}
+};
 
 ContactList.propTypes = {
   contacts: PropTypes.number.isRequired,
@@ -38,3 +36,5 @@ ContactList.propTypes = {
   ).isRequired,
   deleteContact: PropTypes.func.isRequired,
 };
+
+export default ContactList;
