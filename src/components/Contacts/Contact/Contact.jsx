@@ -8,4 +8,9 @@ const Contact = ({ name, number }) => {
   );
 };
 
+Contact.propTypes = {
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+};
+
 export default Contact;

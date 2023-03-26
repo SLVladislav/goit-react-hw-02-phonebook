@@ -2,7 +2,10 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ContactForm extends Component {
-  //   static PropTypes = {};
+  static propTypes = {
+    addContact: PropTypes.func.isRequired,
+    contacts: PropTypes.array.isRequired,
+  };
 
   state = {
     name: '',
@@ -10,9 +13,21 @@ class ContactForm extends Component {
   };
 
   handlSubmit = e => {
-      e.preventDefault();
-      
-      
+    e.preventDefault();
+
+    const isIncludes = this.props.contacts.find(
+      contact => contact.name.toLowerCase() === this.state.name.toLowerCase()
+    );
+
+    isIncludes
+      ? alert(`${this.state.name} is already in contacts`)
+      : this.props.addContact(this.state);
+
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ name: '', number: '' });
   };
 
   handlChange = ({ currentTarget: { name, value } }) => {

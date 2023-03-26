@@ -1,15 +1,20 @@
 import PropTypes from 'prop-types';
 
-export default function Filter({ filter, handleChageFilter }) {
+export default function Filter({ filter, handlChangeFilter }) {
   return (
     <label>
       Find contacts by name
       <input
         type="text"
         name="filter"
-        onChange={handleChageFilter}
+        onChange={handlChangeFilter}
         value={filter}
       />
     </label>
   );
 }
+
+Filter.propTypes = {
+  handlChangeFilter: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
+};
